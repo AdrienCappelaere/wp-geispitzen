@@ -1,0 +1,715 @@
+@import "mixins.scss";
+
+
+// NOTES SUR LE STYLE CSS DE GEISPITZEN
+
+/*
+
+SOMMAIRE:
+TYPOGRAPHY
+FLEX
+HEADER
+HERO
+
+*/
+
+
+// ---------------
+// 2.TYPOGRAPHY
+// ---------------
+
+// Titre du site
+.title-site {
+    font-size: $size-m;
+    line-height: $lh-m;
+    font-weight: bold;
+    font-family: $font-secondary;
+    color: $color-grey-500;
+    margin:0;
+    a {
+        text-decoration: none;
+    }
+}
+
+// Style pour le soulignement sur fond foncé
+.underline-blue {
+    position: relative;
+    display: inline-block;
+    z-index: 1;
+    white-space: nowrap;
+    &:before {
+        content: '';
+        position: absolute;
+        left: 5%;
+        right: -1%;
+        top: 70%;
+        bottom: 10%;
+        background: $color-blue-500;
+        z-index: -1;
+    }
+}
+
+// Style pour le soulignement sur fond clair
+.underline-ylw {
+    position: relative;
+    display: inline-block;
+    z-index: 1;
+    white-space: nowrap;
+    &:before {
+        content: '';
+        position: absolute;
+        left: 5%;
+        right: -1%;
+        top: 70%;
+        bottom: 10%;
+        background: $color-golden;
+        z-index: -1;
+    }
+
+}
+
+// H1
+.title-1 {
+    font-family: $font-secondary;
+    font-weight: bold;
+    font-size: $size-l;
+    line-height: $lh-l;
+    margin:0;
+    padding:0;
+}
+// H2
+h2 { 
+    font-family: $font__title;
+    font-weight: bold;
+    font-size: $size-ml;
+    line-height: $size-ml;
+    color: $color-blue-500;
+    margin-bottom: 1.5rem;
+    margin-top:4rem;
+}
+
+// H3
+h3 { 
+    font-family: $font__title;
+    font-style: normal;
+    font-weight: bold;
+    font-size: $size-m;
+    line-height: $size-m;
+    color: $color-grey-500;
+    margin-bottom: 1.5rem;
+    margin-top:0.5rem;
+}
+
+// H4
+
+// Texte
+p {
+    font-family: $font-main;
+    font-weight: normal;
+    font-size: $size-s;
+    line-height: $lh-s;
+    margin:0;
+    padding:0;
+}
+
+// Menu
+@mixin nav {
+    font-size: $size-s;
+    line-height: $lh-s;
+    font-family: $font-secondary;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+// Dates d'événements
+.event-date {
+    font-family: $font-secondary;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: $size-s;
+    line-height: $size-m;
+    color: $color-grey-400;
+    margin-bottom:$size-xs;
+}
+
+// Boutons
+.btn {
+    border: 1px solid $color-blue-500;
+    box-sizing: border-box;
+    background: $color-blue-500;
+    border-radius: 0;
+    margin:1rem 1rem 1rem 0 ;
+    padding:0.5rem 0;
+    a {
+        font-family: $font-secondary;
+        font-weight: bold;
+        font-size: $size-s;
+        line-height: $size-s;
+        text-transform: uppercase;
+        color: $color-white;
+        text-decoration: none;
+        padding:0.5rem;
+    }
+    &:hover {
+        background-color: darken($color: $color-blue-500, $amount: 7%);
+    }
+}
+
+
+// ---------------
+// FLEX
+// ---------------
+
+.flex-column-center {
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.flex-row-center {
+    display:flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+// ---------------
+// HEADER
+// ---------------
+.header-bloc {
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 1280px;
+    width: 90%;
+    padding:1em 0;
+    display:flex;
+    align-items: center;
+}
+
+.header-branding {
+    display:flex;
+    align-items: center;
+}
+
+.custom-logo {
+    height: auto;
+    max-width: $size-xxl;
+}
+
+.custom-logo-link {
+    display:none;
+}
+
+// Main navigation
+
+.main-navigation {
+    padding-left: $size-s;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-end;
+    .menu-primary-container {
+        position:relative;
+    }
+    .menu-toggle {
+        background-color: $color-white;
+        border:none;
+        outline:none;
+    }
+    .menu {
+        background-color: $color-white;
+    }
+    ul {
+        @include nav;
+        position: absolute;
+        top: 0;
+        right: 0;
+        display:none;
+        &[aria-expanded="true"]{
+            display: flex;
+            flex-wrap: nowrap;
+            flex-direction: column;
+            align-items: center;
+        }
+        a {
+            padding:1rem 0;
+            white-space: nowrap;
+            text-align: end;
+            color: $color-grey-400;
+            &:hover {
+                color: $color-blue-500;
+            }
+        }
+        li {
+            padding-right: $size-s;
+            padding-left: $size-s;
+            display: flex;
+            flex-direction: column;
+        }
+    }
+    .sub-menu {
+        background-color: $color-white;
+        display: none;
+        width: 100%;
+        box-shadow: none;
+        li {
+            background-color: $color-white;
+        }
+        a {
+            width: auto;
+            font-weight: normal;
+        }
+    }
+    .menu-item:hover .sub-menu {
+        display:flex;
+        flex-direction: column;
+        position: static;
+        align-items: center;
+        justify-content: center;
+    }
+}
+
+
+.menu-item {
+    display: flex;
+    align-items: center;
+}
+
+// ---------------
+// HERO
+// ---------------
+
+.hero-bg {
+    background-image:
+        linear-gradient(
+            rgba(0, 0, 0, 0),
+            rgba(0, 0, 0, 0), 
+            rgba(0, 0, 0, 1)
+        );
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    height: calc(100vh - 112px);
+    padding: 0 1rem;
+    * {
+        text-align: center;
+    }
+}
+
+.hero-spacing {
+    display:flex;
+    align-items: flex-end;
+    justify-content: center;
+    padding-bottom: $size-xl; 
+}
+
+.hero-color {
+    color: $color-blue-50;
+}
+
+.hero-txt-spacing {
+    @include margin-s;
+}
+
+.margin-main {
+    padding-top:2rem;
+}
+
+// ---------------
+// BLOC
+// ---------------
+
+.article-txt {
+    margin: 2rem 0;
+}
+
+.mot-president {
+    margin-bottom: 4rem;
+}
+
+.membres-div {
+    display: grid;
+    grid-gap: 1rem;
+    grid-template-columns: repeat(auto-fill, minmax(250px,1fr));
+    // grid-auto-rows: 200px;
+    /*
+    display:flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    */
+}
+
+.membres-block {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    box-sizing: border-box;
+    box-shadow: 0px 10px 24px rgba(0, 0, 0, 0.15);
+    margin: $size-s;
+    padding: $size-s;
+    h4 {
+        color: $color-blue-500;
+        font-weight: bold;
+        font-size: 24px;
+        line-height: 32px;
+        margin:0.5rem;
+    }
+    ul {
+        margin:0;
+        padding: 0;
+        li {
+            text-align: center;
+            list-style: none;
+            padding: 0;
+        }
+    }
+}
+
+.membres-icon {
+    width: 48px;
+    height: 48px;
+}
+
+.event-block {
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    box-shadow: 0px 10px 24px rgba(0, 0, 0, 0.15);
+    margin-bottom: $size-m;
+    margin-top: $size-s;  
+}
+
+.event-img-block {
+    background-size: cover;  
+    background-position: center;
+    height: 20vh;
+}
+
+.event-content {
+    padding: $size-xs $size-s;
+    .btn {
+        margin-left: 0;
+    }
+}
+
+// ---------------
+// FOOTER
+// ---------------
+
+.join-us {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+}
+
+.div-join-img {
+    display:flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    flex: 2 1 0;
+}
+
+.join-us-text {
+    padding-right: $size-ml;
+    flex:1 1 0;
+}
+
+.site-info {
+    padding: $size-l 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-content: center;
+}
+
+.title-footer {
+    color:$color-blue-50;
+}
+
+.footer-txt {
+    margin: $size-s;
+    text-align: center;
+}
+
+.fb-page {
+    display: flex;
+    align-content: center;
+}
+
+// ---------------
+// RESPONSIVE - 1024px
+// ---------------
+
+
+
+@media screen and (min-width: 1024px) {
+
+    // HEADER
+
+    .custom-logo-link {
+        display:block;
+    }
+    .main-navigation {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-end;
+        align-items: center;
+        flex-wrap: nowrap;
+        .menu-primary-container {
+        position: static;
+        }
+        ul {
+            display: flex;
+            position: static;
+            &[aria-expanded="true"]{
+                display: flex;
+                flex-direction: row;
+                justify-content: flex-end;
+                align-items: center;
+            }
+            a {
+                text-align: center;
+            }
+        }
+        .menu-toggle {
+            display: none;
+        }
+        .sub-menu {
+            background-color: $color-white;
+            display: none;
+            position: absolute;
+            width: 100%;
+            top: 100%;
+            right: 0;
+            box-shadow: 0px 5px 5px 0px rgba(0, 0, 0, 0.2);
+            li {
+                background-color: $color-white;
+            }
+            a {
+                width: 150px;
+            }
+        }
+        .menu-item:hover .sub-menu {
+            position: absolute;
+        }
+    }
+
+    
+
+    // BLOC
+    .event-block {
+        flex-direction: row;
+    }
+
+    .event-img-block {
+        flex: 1 1 0;
+        background-size: cover;  
+        height: auto;
+       // background-position: center;
+        
+     }
+     
+     .event-content {
+        padding: $size-xs $size-s;
+        .btn {
+            margin-left: 0;
+        }
+        flex: 2 1 0;
+     }
+
+    // Titre du site
+    .title-site {
+        font-size: $size-ml;
+        line-height: $lh-ml;
+        font-weight: bold;
+        font-family: $font-secondary;
+        color: $color-grey-500;
+        margin:0;
+        margin-left:1rem;
+        a {
+            text-decoration: none;
+        }
+    }
+
+    .title-footer {
+        color: #ebf0fb;}
+    
+
+    
+    // H1
+    .title-1 {
+        font-family: $font-secondary;
+        font-weight: bold;
+        font-size: $size-xl;
+        line-height: $lh-xl;
+        margin:0;
+        padding:0;
+    }
+    // H2
+    h2 { 
+        font-family: $font__title;
+        font-weight: bold;
+        font-size: $size-l;
+        line-height: $size-l;
+        color: $color-blue-500;
+        margin-bottom: 1.5rem;
+        margin-top:4rem;
+    }
+
+    // H3
+    h3 { 
+        font-family: $font__title;
+        font-style: normal;
+        font-weight: bold;
+        font-size: $size-ml;
+        line-height: $size-ml;
+        color: $color-grey-500;
+        margin-bottom: 1.5rem;
+        margin-top:0.5rem;
+    }
+
+    // H4
+
+    // Texte
+    p {
+        font-family: $font-main;
+        font-weight: normal;
+        font-size: $size-s;
+        line-height: $lh-s;
+        margin:0;
+        padding:0;
+    }
+
+    // Menu
+    @mixin nav {
+        font-size: $size-s;
+        line-height: $lh-s;
+        font-family: $font-secondary;
+        text-decoration: none;
+        font-weight: bold;
+    }
+
+    // Dates d'événements
+    .event-date {
+        font-family: $font-secondary;
+        font-weight: bold;
+        text-transform: uppercase;
+        font-size: $size-s;
+        line-height: $size-m;
+        color: $color-grey-400;
+        margin-bottom:$size-xs;
+    }
+
+    // Boutons
+    .btn {
+        border: 1px solid $color-blue-500;
+        box-sizing: border-box;
+        background: $color-blue-500;
+        border-radius: 0;
+        margin:1rem 1rem 1rem 0 ;
+        padding:0.5rem 0;
+        a {
+            font-family: $font-secondary;
+            font-weight: bold;
+            font-size: $size-s;
+            line-height: $size-s;
+            text-transform: uppercase;
+            color: $color-white;
+            text-decoration: none;
+            padding:0.5rem;
+        }
+        &:hover {
+            background-color: darken($color: $color-blue-500, $amount: 7%);
+        }
+    }
+
+    // Footer
+    .join-us {
+        flex-direction: row;
+    }
+
+    .site-info {
+        flex-direction: row;
+    }
+
+}
+
+
+.padding-history {
+    padding: 2rem;
+}
+
+// TEST TIMELINE
+
+.container {
+	max-width: 1024px;
+	width: 90%;
+	margin: auto;
+}
+
+.timeline-item {
+	padding: 3rem 2rem 2rem;
+	position: relative;
+	color: rgba(black, .7);
+    border-left: 2px solid $color-blue-500;
+    ul {
+        margin:0;
+        padding-left:1rem;
+    }
+	
+	
+	&::before {
+		content: attr(date-is);
+		position: absolute;
+		left: 2rem;
+		top: 0.5rem;
+        display: block;
+        font-family: $font__title;
+        font-style: normal;
+        font-weight: bold;
+        font-size: $size-m;
+        line-height: $size-m;
+        color: $color-grey-500;
+	}
+
+	&::after {
+		width: 32px;
+		height: 32px;
+		display: block;
+		top: 1em;
+		position: absolute;
+        left: -16px;
+		// border-radius: 16px;
+		content: '';
+		// border: 2px solid $color-blue-500;
+        background: white;
+        background-image: url('/app/uploads/2020/04/music.svg');
+        background-position: center;
+        background-size: contain;
+	}
+
+	&:last-child {
+		border-image: linear-gradient(
+			to bottom,
+			$color-blue-500 60%,
+			rgba($color-blue-500, 0)) 1 100%
+		;
+	}
+}
+
+.iframe-container {
+    overflow: hidden;
+    padding-top: calc(40%);
+    position: relative;
+    }
+    
+    .iframe-container iframe {
+    border: 0;
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    }

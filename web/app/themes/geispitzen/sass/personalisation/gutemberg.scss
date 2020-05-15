@@ -1,0 +1,14 @@
+/* Main text column width */
+.wp-block {
+    max-width: 992px;
+}
+
+/* Width of "wide" blocks - matches content wrapper width */
+.wp-block[data-align="wide"] {
+    max-width: 1280px;
+}
+
+/* Width of "full-wide" blocks - you need some CSS wizardry to get these blocks to extend outside the wrapper */
+.wp-block[data-align="full"] {
+    max-width: none;
+}

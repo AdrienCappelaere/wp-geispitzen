@@ -1,0 +1,33 @@
+@import "variable.scss";
+
+// ---------------
+// MIXINS
+// ---------------
+
+@mixin margin-0 {
+    margin: 0;
+}
+
+@mixin margin-xs {
+    margin: $size-xs;
+}
+
+@mixin margin-s {
+    margin: $size-s;
+}
+
+@mixin margin-m {
+    margin: $size-m;
+}
+
+@mixin margin-l {
+    margin: $size-l;
+}
+
+@mixin margin-xl {
+    margin: $size-xl;
+}
+
+@mixin margin-xxl {
+    margin: $size-xxl;
+}
